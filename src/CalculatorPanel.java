@@ -3,8 +3,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+import java.math.MathContext;
 
 class CalculatorPanel extends JPanel {
+    private static MathContext MATH_CONTEXT;
     private JLabel labelDisplay;
     private JPanel panel;
     private BigDecimal result;
@@ -36,11 +38,7 @@ class CalculatorPanel extends JPanel {
             buttonCE.setEnabled(false);
         panel.add(buttonCE,command);
         addButton("√",command);
-        // тоже не активная кнопка - отключим ее
-        Button buttonLevel = new Button();
-            buttonLevel.setLabel("x^n");
-            buttonLevel.setEnabled(false);
-        panel.add(buttonLevel,command);
+        addButton("x^2",command);
         addButton("7", insert);
         addButton("8", insert);
         addButton("9", insert);
@@ -89,8 +87,8 @@ class CalculatorPanel extends JPanel {
                 result = BigDecimal.valueOf(0);
                 return;
             }
-            // здесь перехватываем команду подсчета корня
-            if (command.equals("√") == true){
+            // здесь перехватываем команду подсчета корня и Хв степени2
+            if ((command.equals("√") == true) || (command.equals("x^2") == true)){
                 // так как после нажатия на знак корень нам не надо жать =, присваиваем в lastcommand знак корня
                 // для проверки в следующем методе
                 lastCommand = command;
@@ -98,6 +96,7 @@ class CalculatorPanel extends JPanel {
                 lastCommand = "=";
                 start = true;
             }
+
             if (!start) {
                 // считаем пример
                 calculate(new BigDecimal(labelDisplay.getText()));
@@ -117,10 +116,16 @@ class CalculatorPanel extends JPanel {
             BigDecimal x1 = new BigDecimal(Math.sqrt(x.doubleValue()));
             result = x1;
         }
+        if (lastCommand.equals("x^2")) {
+            BigDecimal b1 = new BigDecimal(String.valueOf(x));
+            BigDecimal x2 = b1.pow(2);
+            result = x2;
+        }
         if (lastCommand.equals("=")) result = x;
         if (result.compareTo(BigDecimal.ZERO) == 0) {
             result = BigDecimal.ZERO;
         }
         labelDisplay.setText(result.toString());
     }
+
 }
