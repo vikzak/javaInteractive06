@@ -35,7 +35,7 @@ class CalculatorPanel extends JPanel {
         Button buttonCE = new Button();
             buttonCE.setLabel("CE");
             buttonCE.setEnabled(false);
-        panel.add(buttonCE,command);
+            panel.add(buttonCE,command);
         addButton("√",command);
         addButton("x^2",command);
         addButton("7", insert);
@@ -51,7 +51,10 @@ class CalculatorPanel extends JPanel {
         addButton("3", insert);
         addButton("-", command);
         addButton("0", insert);
-        addButton(".", insert);
+        Button buttonDot = new Button();
+            buttonDot.setLabel(".");
+            buttonDot.setEnabled(false);
+            panel.add(buttonDot);
         addButton("=", command);
         addButton("+", command);
         add(panel, BorderLayout.CENTER);
