@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 
 class CalculatorPanel extends JPanel {
-    private static MathContext MATH_CONTEXT;
     private JLabel labelDisplay;
     private JPanel panel;
     private BigDecimal result;
@@ -87,7 +86,7 @@ class CalculatorPanel extends JPanel {
                 result = BigDecimal.valueOf(0);
                 return;
             }
-            // здесь перехватываем команду подсчета корня и Хв степени2
+            // здесь перехватываем команду подсчета корня и Х в степени2
             if ((command.equals("√") == true) || (command.equals("x^2") == true)){
                 // так как после нажатия на знак корень нам не надо жать =, присваиваем в lastcommand знак корня
                 // для проверки в следующем методе
