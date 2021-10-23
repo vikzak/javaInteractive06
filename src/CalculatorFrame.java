@@ -3,7 +3,7 @@ import java.awt.*;
 
 class CalculatorFrame extends JFrame {
     public CalculatorFrame() {
-        setTitle("Калькулятор");
+        setTitle("Калькулятор Java (lesson-06, geekbrains)");
         CalculatorPanel panel = new CalculatorPanel();
         add(panel);
         pack();
